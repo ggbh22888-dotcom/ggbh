@@ -1,0 +1,16 @@
+GGHB GitHub Upload Steps
+
+1. Unzip this file.
+2. Open your GitHub repository ggbh.
+3. Click Add file > Upload files.
+4. Drag ALL items from inside this folder into the upload box.
+   Important: drag the folders src, public, and netlify as folders.
+5. Click Commit changes.
+6. Return to Netlify > Deploys. A new build should start automatically.
+
+Correct structure includes:
+- src/main.jsx
+- src/App.jsx
+- src/index.css
+- netlify/functions/generate-reading.js
+- netlify/functions/send-report.js
