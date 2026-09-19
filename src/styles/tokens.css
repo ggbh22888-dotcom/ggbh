@@ -1,0 +1,63 @@
+/* ══════════════════════════════════════════════════════════════
+   果甘半壶 GUOGAN BANHU AI VIDEO STUDIO — Design tokens
+   One source of truth for colour, type, rhythm and motion.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Core palette (brand) ───────────────────────────────── */
+  --cinema-black: #0b0b0b;
+  --warm-ivory: #f3efe7;
+  --deep-burgundy: #681e28;
+  --bronze-gold: #b69a6a;
+
+  /* ── Derived surfaces ───────────────────────────────────── */
+  --black-raise: #131110;   /* cards on black */
+  --black-deep: #070706;    /* letterbox bars, footer */
+  --ivory-shade: #e7e1d5;   /* cards on ivory */
+  --ink: #1a1714;           /* text on ivory */
+  --ink-soft: #4a423a;
+  --ink-faint: #6f665b;
+
+  /* ── Text on black ──────────────────────────────────────── */
+  --on-black: #efe9df;
+  --on-black-soft: rgba(239, 233, 223, 0.66);
+  --on-black-faint: rgba(239, 233, 223, 0.52);
+
+  /* ── Lines & accents ────────────────────────────────────── */
+  --hairline-dark: rgba(182, 154, 106, 0.22);
+  --hairline-light: rgba(26, 23, 20, 0.14);
+  --bronze-soft: rgba(182, 154, 106, 0.6);
+  --burgundy-glow: rgba(104, 30, 40, 0.5);
+
+  /* ── Type ───────────────────────────────────────────────── */
+  --font-display: "Cormorant Garamond", "Noto Serif SC", "Songti SC", Georgia, serif;
+  --font-han: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-ui: "Jost", "PingFang SC", "Hiragino Sans GB", -apple-system, sans-serif;
+
+  --step-eyebrow: clamp(0.62rem, 0.58rem + 0.2vw, 0.74rem);
+  --step-body: clamp(0.95rem, 0.9rem + 0.22vw, 1.08rem);
+  --step-lead: clamp(1.05rem, 0.98rem + 0.5vw, 1.35rem);
+  --step-h3: clamp(1.25rem, 1.1rem + 0.8vw, 1.7rem);
+  --step-h2: clamp(1.9rem, 1.4rem + 2.4vw, 3.4rem);
+  --step-h1: clamp(2.6rem, 1.6rem + 5vw, 6.5rem);
+  --step-hanmark: clamp(2.4rem, 1.4rem + 5.4vw, 6rem);
+
+  --track-wide: 0.34em;   /* eyebrow / nav labels */
+  --track-mid: 0.16em;    /* uppercase headlines */
+  --track-han: 0.08em;
+
+  /* ── Rhythm ─────────────────────────────────────────────── */
+  --gutter: clamp(1.25rem, 0.8rem + 3vw, 4.5rem);
+  --section-y: clamp(4.5rem, 3rem + 8vw, 11rem);
+  --max-w: 1440px;
+  --max-text: 62ch;
+
+  /* ── Motion (subtle, cinematic — long easings, no bounce) ─ */
+  --ease-cine: cubic-bezier(0.22, 0.61, 0.24, 1);
+  --dur-fast: 260ms;
+  --dur-mid: 620ms;
+  --dur-slow: 1100ms;
+
+  /* ── Film grain, used on fixed non-interactive overlays ─── */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}

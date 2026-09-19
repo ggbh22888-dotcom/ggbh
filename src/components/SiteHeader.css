@@ -1,0 +1,185 @@
+.masthead {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 120;
+  transition: background-color var(--dur-mid) var(--ease-cine),
+              backdrop-filter var(--dur-mid) var(--ease-cine),
+              border-color var(--dur-mid) var(--ease-cine);
+  border-bottom: 1px solid transparent;
+}
+/* A soft scrim keeps the wordmark legible over bright footage
+   before the header gains its own background. */
+.masthead::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0));
+  opacity: 1;
+  transition: opacity var(--dur-mid) var(--ease-cine);
+  pointer-events: none;
+}
+.masthead.is-lifted::before { opacity: 0; }
+
+.masthead.is-lifted {
+  background: rgba(8, 8, 8, 0.78);
+  backdrop-filter: blur(14px) saturate(120%);
+  border-bottom-color: var(--hairline-dark);
+}
+
+.masthead__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1rem, 3vw, 3rem);
+  padding-block: clamp(0.9rem, 1.6vw, 1.5rem);
+}
+
+/* ── Wordmark ──────────────────────────────────────────────── */
+.mark {
+  display: grid;
+  gap: 0.4rem;
+  line-height: 1;
+}
+.mark__han {
+  font-family: var(--font-han);
+  font-size: clamp(1.2rem, 1rem + 0.7vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--warm-ivory);
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.55);
+}
+.mark__latin {
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(239, 233, 223, 0.7);
+}
+.mark__sep { margin-inline: 0.7ch; color: var(--bronze-soft); }
+.mark:hover .mark__latin { color: var(--bronze-gold); }
+
+/* ── Desktop nav ───────────────────────────────────────────── */
+.masthead__nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.1rem, 2.2vw, 2.6rem);
+}
+.masthead__nav a {
+  position: relative;
+  font-family: var(--font-ui);
+  font-size: var(--step-eyebrow);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--on-black-soft);
+  padding-block: 0.4rem;
+  transition: color var(--dur-fast) var(--ease-cine);
+}
+.masthead__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--bronze-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-mid) var(--ease-cine);
+}
+.masthead__nav a:hover { color: var(--warm-ivory); }
+.masthead__nav a:hover::after { transform: scaleX(1); }
+
+.masthead__actions { display: flex; align-items: center; gap: 1rem; }
+.btn--sm { padding: 0.82em 1.35em; }
+
+/* ── Burger ────────────────────────────────────────────────── */
+.burger {
+  display: none;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-ui);
+  font-size: var(--step-eyebrow);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--warm-ivory);
+}
+.burger__bars {
+  display: grid;
+  gap: 5px;
+  width: 24px;
+}
+.burger__bars i {
+  display: block;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--dur-fast) var(--ease-cine), opacity var(--dur-fast) var(--ease-cine);
+}
+.burger__bars.is-x i:first-child { transform: translateY(3px) rotate(10deg); }
+.burger__bars.is-x i:last-child { transform: translateY(-3px) rotate(-10deg); }
+
+/* ── Mobile drawer ─────────────────────────────────────────── */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 6rem var(--gutter) max(3rem, env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, #0b0b0b 0%, #120e0e 100%);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-mid) var(--ease-cine);
+}
+.drawer.is-open { opacity: 1; pointer-events: auto; }
+
+.drawer nav ul { display: grid; gap: 0.2rem; }
+.drawer nav a {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  padding-block: 0.65rem;
+  border-bottom: 1px solid rgba(182, 154, 106, 0.14);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.2rem + 3.4vw, 2.6rem);
+  font-weight: 300;
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  color: var(--warm-ivory);
+}
+.drawer__no {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.24em;
+  color: var(--bronze-soft);
+}
+.drawer__cta { align-self: start; }
+.drawer__foot {
+  font-family: var(--font-ui);
+  font-size: var(--step-eyebrow);
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  color: var(--on-black-faint);
+}
+
+@media (max-width: 1024px) {
+  .masthead__nav { display: none; }
+  .burger { display: flex; }
+}
+@media (max-width: 560px) {
+  .masthead__actions .btn--sm { display: none; }
+  .mark__latin { font-size: 0.56rem; letter-spacing: 0.2em; }
+  .burger { gap: 0.5rem; letter-spacing: 0.2em; }
+}
+
+/* Short viewports (small phones, landscape) — the menu scrolls from
+   the top instead of centring and clipping. */
+@media (max-height: 700px) {
+  .drawer { justify-content: flex-start; gap: 1.6rem; padding-top: 5.5rem; }
+  .drawer nav a { font-size: clamp(1.3rem, 1.05rem + 1.8vw, 1.9rem); padding-block: 0.5rem; }
+}

@@ -1,0 +1,94 @@
+.services__head {
+  display: grid;
+  gap: 1.4rem;
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.services__title {
+  display: grid;
+  gap: 0.1em;
+  color: var(--ink);
+  font-size: clamp(1.9rem, 1.3rem + 3vw, 4rem);
+  letter-spacing: 0.06em;
+}
+.services__title-alt {
+  color: var(--deep-burgundy);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.services__list { border-top: 1px solid var(--hairline-light); }
+
+.svc {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.05fr) 2rem;
+  align-items: baseline;
+  gap: 1rem 1.5rem;
+  padding: clamp(1.4rem, 2.6vw, 2.2rem) 0;
+  border-bottom: 1px solid var(--hairline-light);
+  transition: border-color var(--dur-fast) var(--ease-cine);
+}
+.svc::before {
+  content: "";
+  position: absolute;
+  inset: 0 -1.25rem;
+  background: rgba(104, 30, 40, 0.05);
+  opacity: 0;
+  transition: opacity var(--dur-mid) var(--ease-cine);
+  pointer-events: none;
+}
+.svc:hover::before { opacity: 1; }
+.svc:hover { border-bottom-color: var(--deep-burgundy); }
+
+.svc__no {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  color: var(--ink-faint);
+}
+
+.svc__names { display: grid; gap: 0.35rem; }
+.svc__title {
+  font-family: var(--font-display);
+  font-size: var(--step-h3);
+  font-weight: 400;
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.svc__han {
+  font-family: var(--font-han);
+  font-size: 0.86rem;
+  letter-spacing: 0.16em;
+  color: var(--deep-burgundy);
+}
+
+.svc__detail {
+  font-family: var(--font-ui);
+  font-size: var(--step-eyebrow);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+
+.svc__arrow {
+  justify-self: end;
+  font-family: var(--font-ui);
+  color: var(--bronze-gold);
+  opacity: 0;
+  transform: translateX(-0.6rem);
+  transition: opacity var(--dur-mid) var(--ease-cine), transform var(--dur-mid) var(--ease-cine);
+}
+.svc:hover .svc__arrow { opacity: 1; transform: none; }
+
+@media (max-width: 820px) {
+  .svc {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 0.6rem 1rem;
+  }
+  .svc__detail { grid-column: 2; }
+  .svc__arrow { display: none; }
+}

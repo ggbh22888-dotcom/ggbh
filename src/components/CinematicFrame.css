@@ -1,0 +1,192 @@
+.frame { margin: 0; }
+
+.frame__stage {
+  position: relative;
+  aspect-ratio: var(--frame-ratio-small, var(--frame-ratio, 2.39 / 1));
+  overflow: hidden;
+  background: var(--black-deep);
+  border: 1px solid var(--hairline-dark);
+}
+
+.frame__img,
+.frame__video,
+.frame__gen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform var(--dur-slow) var(--ease-cine);
+}
+
+/* ── Generated placeholder scenes ──────────────────────────── */
+.frame__gen { overflow: hidden; }
+
+.frame--burgundy .frame__gen {
+  background:
+    radial-gradient(120% 90% at 22% 78%, rgba(104, 30, 40, 0.92) 0%, rgba(104, 30, 40, 0) 58%),
+    radial-gradient(70% 60% at 76% 18%, rgba(182, 154, 106, 0.28) 0%, rgba(182, 154, 106, 0) 62%),
+    linear-gradient(168deg, #16100f 0%, #0b0b0b 52%, #050404 100%);
+}
+.frame--amber .frame__gen {
+  background:
+    radial-gradient(90% 120% at 82% 12%, rgba(182, 154, 106, 0.5) 0%, rgba(182, 154, 106, 0) 60%),
+    radial-gradient(80% 70% at 12% 88%, rgba(104, 30, 40, 0.42) 0%, rgba(104, 30, 40, 0) 64%),
+    linear-gradient(196deg, #1b1510 0%, #0d0b09 60%, #070605 100%);
+}
+.frame--night .frame__gen {
+  background:
+    radial-gradient(60% 80% at 50% 108%, rgba(182, 154, 106, 0.24) 0%, rgba(182, 154, 106, 0) 60%),
+    radial-gradient(100% 60% at 8% 4%, rgba(239, 233, 223, 0.09) 0%, rgba(239, 233, 223, 0) 58%),
+    linear-gradient(180deg, #131312 0%, #0a0a09 58%, #060605 100%);
+}
+.frame--ivory .frame__gen {
+  background:
+    radial-gradient(90% 110% at 78% 6%, rgba(243, 239, 231, 0.9) 0%, rgba(243, 239, 231, 0) 58%),
+    radial-gradient(80% 80% at 14% 92%, rgba(182, 154, 106, 0.55) 0%, rgba(182, 154, 106, 0) 62%),
+    linear-gradient(190deg, #cdc3b1 0%, #8d8371 48%, #2c2723 100%);
+}
+
+/* A single soft horizon line + light beam give the flat gradient
+   a sense of depth and camera, without any stock imagery. */
+.frame__horizon {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: 62%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(243, 239, 231, 0.34), transparent);
+  opacity: 0.5;
+  transform: rotate(-1.2deg);
+}
+.frame--ivory .frame__horizon { background: linear-gradient(90deg, transparent, rgba(26, 23, 20, 0.28), transparent); }
+
+.frame__beam {
+  position: absolute;
+  top: -30%;
+  left: 52%;
+  width: 46%;
+  height: 170%;
+  background: linear-gradient(to bottom, rgba(243, 239, 231, 0.12), rgba(243, 239, 231, 0));
+  transform: rotate(14deg);
+  filter: blur(18px);
+}
+
+.frame__grain {
+  position: absolute;
+  inset: -20%;
+  background-image: var(--grain);
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+}
+
+/* ── Frame furniture ───────────────────────────────────────── */
+.frame__marks {
+  position: absolute;
+  inset: 0.65rem;
+  border: 1px solid rgba(243, 239, 231, 0.12);
+  clip-path: polygon(
+    0 0, 2.1rem 0, 2.1rem 1px, calc(100% - 2.1rem) 1px, calc(100% - 2.1rem) 0, 100% 0,
+    100% 100%, calc(100% - 2.1rem) 100%, calc(100% - 2.1rem) calc(100% - 1px),
+    2.1rem calc(100% - 1px), 2.1rem 100%, 0 100%
+  );
+  pointer-events: none;
+}
+
+.frame__meta {
+  position: absolute;
+  inset: auto 1.35rem 1.15rem 1.35rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(243, 239, 231, 0.62);
+  pointer-events: none;
+}
+.frame--ivory .frame__meta { color: rgba(243, 239, 231, 0.78); }
+
+.frame__tag {
+  padding: 0.4em 0.7em;
+  border: 1px solid rgba(243, 239, 231, 0.2);
+  color: rgba(243, 239, 231, 0.58);
+}
+
+.frame__caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1rem;
+  font-family: var(--font-ui);
+  font-size: var(--step-eyebrow);
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+}
+.frame__label { color: var(--bronze-gold); }
+.frame__sub { color: var(--on-black-faint); }
+.section--ivory .frame__sub { color: var(--ink-faint); }
+
+/* ── Play control (only rendered when a video is supplied) ─── */
+.frame__play {
+  position: absolute;
+  inset: auto auto 1.1rem 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  background: rgba(7, 7, 6, 0.62);
+  border: 1px solid rgba(182, 154, 106, 0.45);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-ui);
+  font-size: 0.56rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--warm-ivory);
+  transition: background-color var(--dur-fast) var(--ease-cine),
+              border-color var(--dur-fast) var(--ease-cine);
+}
+.frame__play:hover { background: var(--deep-burgundy); border-color: var(--deep-burgundy); }
+.frame__play-glyph {
+  width: 0;
+  height: 0;
+  border-left: 7px solid var(--bronze-gold);
+  border-top: 4.5px solid transparent;
+  border-bottom: 4.5px solid transparent;
+}
+.frame__play.is-playing .frame__play-glyph {
+  width: 7px;
+  height: 9px;
+  border: 0;
+  border-left: 2px solid var(--bronze-gold);
+  border-right: 2px solid var(--bronze-gold);
+}
+
+/* ── Mobile ────────────────────────────────────────────────────
+   A 2.39 : 1 plate is only 130px tall on a phone. Open the frame up
+   progressively so the imagery still reads as a film still. The
+   component sets --frame-ratio inline, so the override rides on a
+   second custom property rather than fighting inline specificity. */
+/* Portraits and posters keep their own shape at every width. */
+.frame--fixed { --frame-ratio-small: var(--frame-ratio); }
+
+@media (max-width: 760px) {
+  .frame { --frame-ratio-small: 16 / 9; }
+  .frame--fixed { --frame-ratio-small: var(--frame-ratio); }
+  .frame__marks { inset: 0.5rem; }
+  .frame__meta { inset: auto 1rem 0.9rem 1rem; font-size: 0.54rem; letter-spacing: 0.2em; }
+  .frame__play { inset: auto auto 0.85rem 1rem; }
+}
+@media (max-width: 440px) {
+  .frame { --frame-ratio-small: 3 / 2; }
+  .frame--fixed { --frame-ratio-small: var(--frame-ratio); }
+  .frame__tag { font-size: 0.5rem; letter-spacing: 0.16em; }
+}
+
+/* Slow drift on hover — parents opt in with .frame--live */
+.frame--live:hover .frame__img,
+.frame--live:hover .frame__gen { transform: scale(1.045); }
