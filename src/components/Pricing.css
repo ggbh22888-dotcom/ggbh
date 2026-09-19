@@ -1,0 +1,162 @@
+.pricing__head { display: grid; gap: 1.1rem; max-width: 54ch; }
+.pricing__title {
+  color: var(--ink);
+  font-size: clamp(1.7rem, 1.2rem + 2.2vw, 3rem);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+.pricing__intro {
+  font-family: var(--font-han);
+  letter-spacing: var(--track-han);
+  color: var(--ink-soft);
+}
+
+/* ── Rate sheet: one row per tier, ledger rules, no card grid ── */
+.sheet {
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  border-top: 1px solid rgba(26, 23, 20, 0.26);
+}
+
+.tier {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 0.85fr) minmax(0, 1.2fr);
+  gap: clamp(1.6rem, 3.5vw, 4rem);
+  padding: clamp(1.8rem, 3.4vw, 3rem) 0;
+  border-bottom: 1px solid var(--hairline-light);
+}
+.tier::before {
+  content: "";
+  position: absolute;
+  inset: 0 -1.25rem;
+  background: rgba(104, 30, 40, 0.035);
+  opacity: 0;
+  transition: opacity var(--dur-mid) var(--ease-cine);
+  pointer-events: none;
+}
+.tier:hover::before { opacity: 1; }
+
+.tier--accent {
+  padding-left: clamp(1rem, 2vw, 1.75rem);
+  border-left: 1px solid var(--deep-burgundy);
+  background: linear-gradient(100deg, rgba(104, 30, 40, 0.06), rgba(104, 30, 40, 0) 55%);
+}
+
+/* ── Identity column ───────────────────────────────────────── */
+.tier__identity { display: grid; gap: 0.55rem; align-content: start; }
+
+.tier__no {
+  font-family: var(--font-ui);
+  font-size: 0.56rem;
+  letter-spacing: 0.3em;
+  color: var(--ink-faint);
+  margin-bottom: 0.4rem;
+}
+.tier__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 1.1rem + 1.1vw, 2.1rem);
+  line-height: 1.05;
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.tier__han {
+  font-family: var(--font-han);
+  font-size: 0.86rem;
+  letter-spacing: 0.18em;
+  color: var(--deep-burgundy);
+}
+.tier__from {
+  margin-top: 0.7rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 0.7vw, 1.6rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+}
+.tier__scope {
+  font-family: var(--font-ui);
+  font-size: var(--step-eyebrow);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  max-width: 28ch;
+}
+.tier__cta { justify-self: start; margin-top: 0.9rem; }
+
+/* ── Information panels ────────────────────────────────────── */
+.tier__panel { display: grid; gap: 1rem; align-content: start; }
+
+.tier__label {
+  font-family: var(--font-ui);
+  font-size: 0.56rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--hairline-light);
+}
+
+.tier__best { display: grid; gap: 0.7rem; }
+.tier__best li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.tier__best li::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 1px;
+  background: var(--deep-burgundy);
+  transform: translateY(-0.35em);
+}
+
+.tier__includes { display: grid; gap: 0.55rem; }
+.tier__includes--two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem 1.5rem; }
+.tier__includes li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.tier__includes li::before {
+  content: "";
+  flex: none;
+  width: 12px;
+  height: 1px;
+  background: var(--bronze-gold);
+  transform: translateY(-0.3em);
+}
+
+.pricing__disclaimer {
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+  max-width: 82ch;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 1080px) {
+  .tier { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .tier__identity { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .tier { grid-template-columns: 1fr; gap: 1.6rem; }
+  .tier__includes--two { grid-template-columns: 1fr; }
+  .tier--accent { padding-left: 1rem; }
+}

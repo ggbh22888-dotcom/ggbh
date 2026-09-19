@@ -1,0 +1,210 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  align-items: end;
+  padding-block: clamp(7rem, 12vh, 11rem) clamp(4rem, 9vh, 7rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── Backplate ─────────────────────────────────────────────── */
+.hero__stage { position: absolute; inset: 0; z-index: -1; }
+
+.hero__video,
+.hero__plate {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__plate {
+  background:
+    radial-gradient(110% 80% at 18% 82%, rgba(104, 30, 40, 0.72) 0%, rgba(104, 30, 40, 0) 56%),
+    radial-gradient(80% 70% at 84% 8%, rgba(182, 154, 106, 0.26) 0%, rgba(182, 154, 106, 0) 60%),
+    linear-gradient(172deg, #17100f 0%, #0b0b0b 48%, #050505 100%);
+}
+
+.hero__glow,
+.hero__beam,
+.hero__dust,
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* Slow lamp breathing — the only ambient loop on the page. */
+.hero__glow {
+  background: radial-gradient(48% 42% at 62% 46%, rgba(182, 154, 106, 0.2) 0%, rgba(182, 154, 106, 0) 70%);
+  animation: lamp 16s var(--ease-cine) infinite alternate;
+}
+@keyframes lamp {
+  from { opacity: 0.55; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.08); }
+}
+
+.hero__beam {
+  inset: -25% -10%;
+  background: linear-gradient(to bottom, rgba(243, 239, 231, 0.13), rgba(243, 239, 231, 0) 62%);
+  transform: rotate(11deg) translate3d(14%, -8%, 0);
+  filter: blur(26px);
+}
+
+.hero__dust {
+  inset: -15%;
+  background-image: var(--grain);
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+}
+
+.hero__vignette {
+  background:
+    radial-gradient(120% 90% at 50% 50%, rgba(0, 0, 0, 0) 38%, rgba(0, 0, 0, 0.72) 100%),
+    linear-gradient(to top, rgba(7, 7, 6, 0.92) 0%, rgba(7, 7, 6, 0) 52%);
+}
+
+/* Letterbox bars — the frame the studio shoots in. */
+.hero__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(1.1rem, 3.4vh, 2.6rem);
+  background: var(--black-deep);
+}
+.hero__bar--top { top: 0; }
+.hero__bar--bottom { bottom: 0; }
+
+/* ── Content ───────────────────────────────────────────────── */
+.hero__body {
+  display: grid;
+  gap: clamp(1.6rem, 3vh, 2.6rem);
+  max-width: min(100%, 1100px);
+  animation: hero-in var(--dur-slow) var(--ease-cine) both;
+}
+@keyframes hero-in {
+  from { opacity: 0; transform: translate3d(0, 26px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+.hero__slate {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: var(--font-ui);
+  font-size: var(--step-eyebrow);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--bronze-gold);
+}
+.hero__slate-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--bronze-soft);
+}
+
+.hero__title { display: grid; gap: clamp(0.8rem, 1.6vh, 1.4rem); }
+
+.hero__han {
+  font-family: var(--font-han);
+  font-size: var(--step-hanmark);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  color: var(--warm-ivory);
+  text-shadow: 0 1px 60px rgba(0, 0, 0, 0.6);
+}
+
+.hero__latin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 1.4rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 0.85rem + 1.1vw, 1.9rem);
+  font-weight: 300;
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  color: var(--on-black);
+}
+.hero__descriptor {
+  padding-left: 1.4rem;
+  border-left: 1px solid var(--bronze-soft);
+  color: var(--bronze-gold);
+}
+
+.hero__statement {
+  display: grid;
+  gap: clamp(1rem, 2vh, 1.6rem);
+  padding-left: clamp(0.9rem, 1.6vw, 1.6rem);
+  border-left: 1px solid var(--hairline-dark);
+}
+.hero__han-lines,
+.hero__en-lines { display: grid; gap: 0.2rem; }
+.hero__han-lines span {
+  font-family: var(--font-han);
+  font-size: var(--step-lead);
+  font-weight: 300;
+  letter-spacing: var(--track-han);
+  color: var(--warm-ivory);
+}
+.hero__en-lines span {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 0.9rem + 0.35vw, 1.2rem);
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--on-black-soft);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+/* ── Scroll cue ────────────────────────────────────────────── */
+.hero__scroll {
+  position: absolute;
+  right: var(--gutter);
+  bottom: clamp(3.4rem, 8vh, 6rem);
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--on-black-faint);
+}
+.hero__scroll-text { writing-mode: vertical-rl; }
+.hero__scroll-line {
+  width: 1px;
+  height: 4.5rem;
+  background: linear-gradient(to bottom, var(--bronze-soft), transparent);
+  transform-origin: top;
+  animation: cue 3.6s var(--ease-cine) infinite;
+}
+@keyframes cue {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.5; }
+  45% { transform: scaleY(1); opacity: 1; }
+}
+.hero__scroll:hover { color: var(--bronze-gold); }
+
+@media (max-width: 900px) {
+  .hero__scroll { display: none; }
+}
+
+@media (max-width: 560px) {
+  /* Keep the Chinese wordmark and the two statement blocks breathing
+     on a phone: slightly tighter tracking, shorter letterbox bars. */
+  .hero__han { letter-spacing: 0.1em; }
+  .hero__han-lines span { letter-spacing: 0.05em; line-height: 1.7; }
+  .hero__latin { gap: 0.45rem 1rem; }
+  .hero__descriptor { padding-left: 0; border-left: 0; }
+  .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
+}

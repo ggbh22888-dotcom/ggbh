@@ -1,0 +1,93 @@
+.footer {
+  background: var(--black-deep);
+  border-top: 1px solid var(--hairline-dark);
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: clamp(2.2rem, 5vw, 5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.footer__han {
+  font-family: var(--font-han);
+  font-size: clamp(1.3rem, 1.1rem + 0.9vw, 1.9rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  color: var(--warm-ivory);
+}
+.footer__latin {
+  margin-top: 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  color: var(--bronze-gold);
+}
+.footer__place {
+  margin-top: 1.1rem;
+  font-family: var(--font-ui);
+  font-size: var(--step-eyebrow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--on-black-faint);
+}
+
+.footer__label,
+.footer__hint {
+  font-family: var(--font-ui);
+  font-size: 0.56rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--on-black-faint);
+}
+.footer__links ul {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: start;
+  margin: 1.4rem 0;
+}
+.footer__hint { letter-spacing: 0.16em; line-height: 1.9; max-width: 30ch; }
+
+.footer__statement { display: grid; gap: 1.2rem; align-content: start; }
+.footer__manifesto {
+  display: grid;
+  gap: 0.15rem;
+  font-family: var(--font-han);
+  letter-spacing: var(--track-han);
+  color: var(--on-black-soft);
+}
+.footer__manifesto--en {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--on-black-faint);
+}
+
+.footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.6rem 2rem;
+  padding-top: clamp(1.4rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--hairline-dark);
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(239, 233, 223, 0.5);
+}
+
+@media (max-width: 900px) {
+  .footer__grid { grid-template-columns: 1fr; gap: 2.4rem; }
+}
+
+/* The concierge control is fixed bottom-right; give the last line of
+   the site room to sit clear of it. */
+@media (max-width: 620px) {
+  .footer { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); }
+  .footer__han { letter-spacing: 0.16em; }
+  .footer__base { gap: 0.5rem 1.2rem; }
+}

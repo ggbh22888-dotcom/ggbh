@@ -1,0 +1,69 @@
+.work { display: grid; gap: 1.35rem; }
+
+.work__frame .frame__stage { border-color: rgba(182, 154, 106, 0.16); }
+
+.work__meta {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--hairline-dark);
+}
+
+.work__titles { display: grid; gap: 0.3rem; }
+
+.work__han {
+  font-family: var(--font-han);
+  font-weight: 400;
+  font-size: var(--step-h3);
+  letter-spacing: 0.08em;
+  color: var(--warm-ivory);
+}
+.work--feature .work__han { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem); }
+
+.work__latin {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.15rem);
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  color: var(--bronze-gold);
+}
+
+.work__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2.4rem;
+  margin: 0;
+}
+.work__facts dt {
+  font-family: var(--font-ui);
+  font-size: 0.56rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--on-black-faint);
+  margin-bottom: 0.35rem;
+}
+.work__facts dd {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--step-eyebrow);
+  letter-spacing: 0.1em;
+  color: var(--on-black-soft);
+}
+
+.work__class dd {
+  display: grid;
+  gap: 0.2rem;
+}
+.work__class dd span:first-child { color: var(--bronze-gold); }
+
+.work__status { margin: 0; }
+.work__pending {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--on-black-faint);
+}
+
+.work--link:hover .work__latin { color: var(--warm-ivory); }
+.work--link:hover .work__meta { border-top-color: var(--bronze-gold); }
