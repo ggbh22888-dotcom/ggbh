@@ -26,7 +26,7 @@ export default async (req, context) => {
     return new Response(JSON.stringify({ error: "请求格式错误" }), { status: 400 });
   }
 
-  const { name, gender, tier, year, month, day, hour, dayStem, dayStemEl, strong, usefulEls, unhelpfulEls } = body;
+  const { name, gender, tier, language, year, month, day, hour, dayStem, dayStemEl, strong, usefulEls, unhelpfulEls } = body;
 
   // 基本输入检查，避免明显异常的请求打到 API
   if (!name || !year || !month || !day || !hour || !dayStem) {
@@ -68,6 +68,10 @@ ${styleRules}
 
 请直接输出正文，不要标题，不要任何前言或结语说明。`;
 
+  const outputLanguage = language === "en"
+    ? "Write the entire report in English, including section headings. Translate the section headings above into English but keep the 【Heading】 format. Keep the original Chinese Heavenly Stem and Earthly Branch characters when identifying pillars, explaining their meaning in English. For the preview write about 250–350 English words; for the full report write about 1,500–1,800 English words."
+    : "请用简体中文撰写全文。";
+
   const maxTokens = isFull ? 4096 : 1000;
 
   try {
@@ -81,7 +85,7 @@ ${styleRules}
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
         max_tokens: maxTokens,
-        messages: [{ role: "user", content: prompt }]
+        messages: [{ role: "user", content: `${prompt}\n\nOutput language requirement (takes precedence over language and length instructions above): ${outputLanguage}` }]
       })
     });
 
